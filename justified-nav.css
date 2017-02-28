@@ -1,0 +1,359 @@
+/*ocd*/
+/* General Theme Settings */
+a {
+  color: #000;
+}
+
+h1, h2, h3, h4, h5, h6, .month{
+  font-family: Georgia;
+  margin: 0;
+  background-color: #512DA8;
+  padding: 10px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+
+}
+
+.hidden {
+  display: none;
+}
+
+body {
+  background-color: #eee;/* #D1C4E9;*/
+  padding-top: 0 !important;
+  padding-top: 15px;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  font-size: 16px;
+}
+
+.lead {
+  font-size: 16px;
+
+}
+
+.container {
+  margin: 0;
+  padding: 0;
+}
+
+#leftSide, #RightSide {
+  padding: 0;
+}
+
+#logoText {
+  color: #FFF !important;
+  margin-left: 30px !important;
+  font-size: 45px;
+  background-color: #512DA8 !important;
+  box-shadow: 0 -4px 0 0 rgba(0,0,0,0.2) inset;
+
+}
+
+
+.masthead {
+  /*margin-top: 15px;*/
+  box-shadow: -4px -4px 2px 0 rgba(0,0,0,0.2) inset;
+  background-color: #512DA8;
+}
+/*************************/
+
+#myProgress, #usage, #goals, #draftNewGoal{
+  margin-top: 20px;
+}
+
+ #interactions {
+    margin-top: 30px;
+ }
+
+h1,#myGoalsTitle, #myProgressTitle { /* #logoText*/
+  box-shadow: 0 3px 10px 4px rgba(0,0,0,0.2);
+  color: #FFF;
+  padding: 5px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+  text-align: left;
+}
+
+.btn-circle {
+  position: absolute;
+  height: 56px;
+  width: 56px;
+  font-size: 20px;
+  text-align: center;
+  padding: 0;
+  padding-top: 5px;
+  border-radius: 50%;
+  bottom: 0px;
+  right: 25px;
+  background-color: #FF5722;
+  color: #FFFFFF;
+  box-shadow: 0 3px 10px 4px rgba(0,0,0,0.2);
+  transform: translateY(4px);
+  }
+.btn-circle:hover,
+.btn-circle:focus {
+  color: #FFFFFF;
+  border: none;
+  outline: 0 !important;
+  /*box-shadow: 0 4px 0 0 #7B1FA2;*/
+}
+.btn-circle:active{
+  box-shadow: 0 0 #666;
+  transform: translateY(2px);
+  outline: 0;
+
+  /*box-shadow: 0 4px 0 0 #7B1FA2;*/
+}
+
+.glyphicon.glyphicon-remove, .glyphicon.glyphicon-asterisk {
+    font-size: 30px;
+    color: white;
+}
+
+.glyphicon.glyphicon-ok {
+    /*font-size: 30px;*/
+    color: white;
+}
+
+#goals {
+  padding: 0 0;
+
+}
+
+#draftNewGoal {
+  padding: 0;
+  box-shadow: 0 3px 10px 4px rgba(0,0,0,0.2);
+
+}
+
+/*Styling myGoals list*/
+#myGoals, #myInteractions{
+  list-style: none;
+  font-size: 16px;
+  color: #212121;
+  padding: 0;
+  padding-bottom: 20px;
+  /*max-height: 345px;*/
+  /*overflow-y: auto;*/
+  /*overflow-x: visible;*/
+}
+
+.weekView > div {
+  border-right: 4px solid black;
+  padding-top: 5px;
+  font-size: 20px;
+  height: 30px;
+}
+
+.progress-bar {
+  height: 20px;
+}
+.progress {
+  margin-bottom: 0;
+}
+.weekView {
+  height: 30px !important;
+  box-shadow: 0 3px 10px 4px rgba(0,0,0,0.2);
+  margin: 0;
+}
+
+.monthlyProgress{
+  margin: 0!important;
+  padding: 0;
+  max-height: 500px;
+  overflow-y: auto;
+  background-color: #D3D3D3;
+  border-radius: 4px;
+  border: 4px solid black;
+}
+.weeklyProgress:first-child{
+  margin-top: 0!important;
+}
+.weekView > div:first-child,
+#daysOfWeek>div:first-child{
+  border-left: 4px solid black;
+}
+
+#daysOfWeek>div{
+  width: 13.3%;
+  height: 30px;
+  font-size: 20px;
+  padding-top: 2px;
+  color: white;
+  border-right: 4px solid black;
+  text-align: center;
+  display: inline-block;
+  margin: 0;
+}
+#myProgress > h3 {
+  box-shadow: 0 3px 10px 4px rgba(0,0,0,0.2);
+  color: #fff;
+  width: 43%;
+  height: 40px;
+  padding: 5px;
+  text-align: left;
+}
+
+
+#myGoals>li:first-child,
+#myInteractions>li:first-child {
+    margin-top: 0;
+
+}
+
+#myGoals>li,
+#myInteractions>li,
+#myProgress>div
+/*#myProgress>p */
+{
+    box-shadow: 0 3px 10px 4px rgba(0,0,0,0.2);
+    border-radius: 4px;
+    padding: 10px;
+    padding-bottom: 15px;
+    font-size: 20px;
+    margin-top: 15px;
+    background-color: #D3d3d3;
+}
+
+.glyphicon.glyphicon-plus-sign {
+  color: #512DA8;
+  font-size: 40px;
+}
+
+.glyphicon{
+  color: #FFF;
+}
+
+/* END OF myGoals list styling*/
+
+/* Style infowindow for  google map */
+#firstHeading {
+  /*text-decoration: underline;*/
+  margin-bottom: 5px;
+}
+#secondHeading {
+  margin-top: 5px;
+}
+
+#map {
+  height: 715px;
+  background-color: grey;
+  margin: 0 0;
+  box-shadow: 0 2px 8px 5px rgba(0,0,0,0.2);
+  border-radius-bottom-right: 4px;
+  border-radius-bottom-left: 4px;
+}
+
+/* Button Class */
+
+.btn1 {
+  /*font-size: 50px;*/
+  padding-top: 5px;
+  color: #FFFFFF;
+  /*background-color: #FF5722;*/
+  background-color: #008000;
+  /*border-color: #7986cb;*/
+  box-shadow: 0 2px 0 0 #006400;
+  transition: 0.5s;
+  }
+#btn1:hover,
+#btn1:focus {
+  background-color: #E64A19;
+  /*box-shadow: 0 2px 0 0 #E64A19;*/
+}
+#btn1:active{
+  /*box-shadow: 0 0 #666;*/
+  transform: translateY(4px);
+  /*box-shadow: 0 2px 0 0 #E64A19;*/
+
+}
+/* ENd Button Class*/
+
+/* Done Styling infowindow for google map*/
+
+#newGoalSubmit{
+  font-size: 50px;
+  height: 74px;
+}
+
+#newGoalInput{
+  height: 74px;
+  font-size: 16px;
+  padding: 21px;
+
+}
+
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+  /* Remove the padding we set earlier */
+  .masthead,
+  .marketing,
+  .footer {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+/****************************************/
+
+/* The following code is modified from w3schools.com tutorial
+on creating a calendar */
+#calendar {
+  padding: 0;
+  box-shadow: 0 3px 10px 4px rgba(0,0,0,0.2);
+  margin-top: 15px;
+}
+
+* {box-sizing:border-box;}
+ul {list-style-type: none;}
+
+.weekdays {
+    margin: 0;
+    padding: 10px 0;
+    background-color: #B0B0B0;
+}
+
+.weekdays li {
+    display: inline-block;
+    width: 13.5%;
+    color: #F0F0F0;
+    text-align: center;
+    font-style: bold;
+}
+
+.days {
+    padding: 10px 0;
+    background: #D3D3D3;
+    margin: 0;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+
+.days li {
+  padding-top: 2px;
+    list-style-type: none;
+    display: inline-block;
+    width: 13.5%;
+    text-align: center;
+    padding-bottom: 2px;
+    font-size:14px;
+    color: #F0F0F0;
+    border-radius: 4px;
+}
+
+.days .active {
+    /*background: #673AB7;*/
+  box-shadow: 0 2px 2px 0px rgba(0,0,0,0.2);
+  color: white !important;
+  border: 3px outset white;
+  transform: translateY(2px);
+
+
+    /*border-radius: 10%;*/
+}
