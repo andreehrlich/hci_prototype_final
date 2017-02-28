@@ -131,7 +131,7 @@ function showMyGoals(listOfGoals, parentElem) {
 	}
 	// hide the trash icon to start
     $("#myGoals li span").each(function() {
-    	$(this).toggleClass('hide');
+    	$(this).toggleClass('glyphicon-remove glyphicon-time');
     })
 }
 
@@ -152,22 +152,10 @@ function prependGoal(goal, parentElem, progress) {
 	}
 
 	var newElem =
-	'<li>' +
-		'<span ' +
-			'style=" color: #FF0000; ' +
-					'background-color: #C3C3C3;' +
-					'padding: 2px; ' +
-					'padding-top: 8px; ' +
-					'text-align: center; ' +
-					'vertical-align: center; ' +
-					'font-size: 25px; ' +
-					'height: 40px; ' +
-					'width: 40px;" ' +
-					// 'border-radius: 10px; ' +
-			'class="glyphicon glyphicon-remove">' +
-		'</span> ' + goal +
-		'<div class="progress" style="padding: 0;">' +
-			'<div class="progress-bar progress-bar-' + progressStatus + '" ' +
+	'<li class="col-md-12">' +
+		'<span class="glyphicon glyphicon-remove col-md-3"></span> ' + goal +
+		'<div class="progress col-md-9" style="padding: 0;">' +
+			'<div class="col-md-12 progress-bar progress-bar-' + progressStatus + '" ' +
 				'role="progressbar"' +
 				'style="width: ' + ((progress/monthLength)*100) + '%;">' + progress +'/'+monthLength +
 			'</div>'+
@@ -207,7 +195,7 @@ var tmpInd, statusColor;
 $(document).ready(function(){
 
 	// Make our scrollbar nicer for goals
-    $('#myGoals').slimScroll({ height: '445px' });
+    $('#myGoals').slimScroll({ height: '490px' });
 
 	// call tootip if the element is hovered.
     $('[data-toggle="tooltip"]').tooltip();
@@ -228,7 +216,7 @@ $(document).ready(function(){
 			$("#draftNewGoal").toggleClass("hidden");
 			$("#draftNewGoalBtn").children().toggleClass("glyphicon-menu-up glyphicon-plus");
 		    $("#myGoals li span").each(function() {
-		    	$(this).toggleClass('hide');
+		    	$(this).toggleClass('glyphicon-remove glyphicon-time');
 		    })
 		}
 	});
@@ -242,13 +230,15 @@ $(document).ready(function(){
     	// Click the circular orange button to draft a new goal.
 	$("#draftNewGoalBtn").click(function() {
 		$("#draftNewGoal").toggleClass("hidden");
-	    $("i", this).toggleClass("glyphicon-menu-up glyphicon-plus");
+	    $("i", this).toggleClass("glyphicon-menu-up glyphicon-asterisk");
 	    // Make a clickable icon next to each existing goal
 	    // this will let user delete goals.
 	    $("#myGoals li span").each(function() {
-	    	$(this).toggleClass('hide');
+	    	$(this).toggleClass('glyphicon-remove glyphicon-time');
 	    })
 	});
+
+	// generate random colors on cal for days that have past.
 	$(".days li").each(function() {
 		if ($(this).hasClass('active')) {
 			return false;
@@ -256,9 +246,6 @@ $(document).ready(function(){
 			tmpInd = getRandomIntInclusive(0,2);
 			statusColor = goalStatusLegend[tmpInd];
 			$(this).css('background', statusColor);
-			$(this).css('border', '3px outset white');
-			$(this).css('transform', 'translateY(2px)');
-			$(this).css('box-shadow', '0 2px 2px 0px rgba(0,0,0,0.2)');
 		}
 	});
 });

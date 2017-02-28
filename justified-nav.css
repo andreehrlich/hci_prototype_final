@@ -8,6 +8,7 @@ h1, h2, h3, h4, h5, h6, .month{
   font-family: Georgia;
   margin: 0;
   background-color: #512DA8;
+  background: linear-gradient(-45deg, #512DA8, rgba(64,40,200,0.6));
   padding: 10px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
@@ -46,16 +47,19 @@ body {
   color: #FFF !important;
   margin-left: 30px !important;
   font-size: 45px;
-  background-color: #512DA8 !important;
+  /*background-color: #512DA8 !important;*/
   box-shadow: 0 -4px 0 0 rgba(0,0,0,0.2) inset;
-
+  background: none;
 }
 
 
 .masthead {
   /*margin-top: 15px;*/
-  box-shadow: -4px -4px 2px 0 rgba(0,0,0,0.2) inset;
-  background-color: #512DA8;
+  /*box-shadow: -4px -4px 2px 0 rgba(0,0,0,0.2) inset;*/
+  /*background-color: #512DA8;*/
+    background: linear-gradient(-45deg, #512DA8, rgba(64,40,200,0.6));
+  /*box-shadow: 0 -4px 0 0 rgba(0,0,0,0.4) inset;*/
+
 }
 /*************************/
 
@@ -64,10 +68,10 @@ body {
 }
 
  #interactions {
-    margin-top: 30px;
+    margin-top: 20px;
  }
 
-h1,#myGoalsTitle, #myProgressTitle { /* #logoText*/
+h1,#myGoalsTitle, #myProgressTitle, #interactions>h1 { /* #logoText*/
   box-shadow: 0 3px 10px 4px rgba(0,0,0,0.2);
   color: #FFF;
   padding: 5px;
@@ -155,75 +159,76 @@ h1,#myGoalsTitle, #myProgressTitle { /* #logoText*/
 .progress {
   margin-bottom: 0;
 }
-.weekView {
-  height: 30px !important;
-  box-shadow: 0 3px 10px 4px rgba(0,0,0,0.2);
-  margin: 0;
-}
-
-.monthlyProgress{
-  margin: 0!important;
-  padding: 0;
-  max-height: 500px;
-  overflow-y: auto;
-  background-color: #D3D3D3;
-  border-radius: 4px;
-  border: 4px solid black;
-}
-.weeklyProgress:first-child{
-  margin-top: 0!important;
-}
-.weekView > div:first-child,
-#daysOfWeek>div:first-child{
-  border-left: 4px solid black;
-}
-
-#daysOfWeek>div{
-  width: 13.3%;
-  height: 30px;
-  font-size: 20px;
-  padding-top: 2px;
-  color: white;
-  border-right: 4px solid black;
-  text-align: center;
-  display: inline-block;
-  margin: 0;
-}
-#myProgress > h3 {
-  box-shadow: 0 3px 10px 4px rgba(0,0,0,0.2);
-  color: #fff;
-  width: 43%;
-  height: 40px;
-  padding: 5px;
-  text-align: left;
-}
-
 
 #myGoals>li:first-child,
 #myInteractions>li:first-child {
-    margin-top: 0;
-
+    margin-top: 5px;
 }
 
 #myGoals>li,
 #myInteractions>li,
 #myProgress>div
-/*#myProgress>p */
 {
-    box-shadow: 0 3px 10px 4px rgba(0,0,0,0.2);
-    border-radius: 4px;
+    box-shadow: 0 3px 0 0 rgba(0,0,0,0.5);
+    border-radius: 2px;
     padding: 10px;
-    padding-bottom: 15px;
-    font-size: 20px;
-    margin-top: 15px;
-    background-color: #D3d3d3;
+    /*padding-right: 20px;*/
+    /*padding-bottom: 15px;*/
+    font-size: 18px;
+    margin-top: 20px;
+    background: linear-gradient(-45deg, #BDBDBD, #D3D3D3);
 }
-
+#myInteractions>li>span{
+  background: linear-gradient(-45deg, #512DA8, #fff);
+  border-radius: 50%;
+}
+#myGoals>li>.glyphicon-remove{
+  color: #FF0000;
+  /*background-color: #C3C3C3;*/
+  background: linear-gradient(-45deg, #C3C3C3, #FFF);
+  margin: 8px;
+  padding: 8px;
+  text-align: center;
+  vertical-align: center;
+  font-size: 25px;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+#myGoals>li>.glyphicon-time{
+  color: #fff;
+  background: linear-gradient(-45deg, #512DA8, #FFF);
+  border-radius: 50%;
+  margin: 8px;
+  padding: 8px;
+  text-align: center;
+  vertical-align: center;
+  font-size: 25px;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+#myGoals>li>.glyphicon-house{
+  color: #white;
+  background: linear-gradient(-45deg, #512DA8, #fff);
+  border-radius: 50%;
+  margin: 8px;
+  padding: 8px;
+  text-align: center;
+  vertical-align: center;
+  font-size: 25px;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
 .glyphicon.glyphicon-plus-sign {
   color: #512DA8;
   font-size: 40px;
 }
 
+.glyphicon.glyphicon-time{
+  color: #fff;
+}
 .glyphicon{
   color: #FFF;
 }
@@ -305,7 +310,7 @@ on creating a calendar */
 #calendar {
   padding: 0;
   box-shadow: 0 3px 10px 4px rgba(0,0,0,0.2);
-  margin-top: 15px;
+  margin-top: 20px;
 }
 
 * {box-sizing:border-box;}
@@ -314,21 +319,23 @@ ul {list-style-type: none;}
 .weekdays {
     margin: 0;
     padding: 10px 0;
-    background-color: #B0B0B0;
+    background-color: #777;
+    float: center;
+
 }
 
 .weekdays li {
     display: inline-block;
-    width: 13.5%;
+    width: 13%;
     color: #F0F0F0;
     text-align: center;
     font-style: bold;
 }
 
 .days {
-    padding: 10px 0;
-    background: #D3D3D3;
+    background-color: #777;
     margin: 0;
+    padding: 0;
     border-top-right-radius: 0;
     border-top-left-radius: 0;
     border-bottom-left-radius: 4px;
@@ -336,24 +343,43 @@ ul {list-style-type: none;}
 }
 
 .days li {
-  padding-top: 2px;
     list-style-type: none;
     display: inline-block;
-    width: 13.5%;
+    width: 13.35%;
+    margin: 0;
+    background: linear-gradient(-45deg, #ccc, #bbb);
     text-align: center;
-    padding-bottom: 2px;
-    font-size:14px;
+    /*padding-left: 6.5%;*/
+    /*padding-right: 6.5%;*/
+    /*font-size:14px;*/
     color: #F0F0F0;
     border-radius: 4px;
+    box-shadow: 0 2px 0 0 rgba(0,0,0,0.5);
 }
 
 .days .active {
-    /*background: #673AB7;*/
-  box-shadow: 0 2px 2px 0px rgba(0,0,0,0.2);
+  background: #673AB7;
+  box-shadow: 0 -4px -4px 0 rgba(255,255,255,1);
   color: white !important;
-  border: 3px outset white;
+  /*padding-top: 4px;*/
+  /*border: 3px outset white;*/
   transform: translateY(2px);
+}
 
+.days li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.5);
+}
 
-    /*border-radius: 10%;*/
+@media screen and (max-width:720px) {
+    .weekdays li, .days li {width: 12.3%;}
+}
+
+@media screen and (max-width: 420px) {
+    .weekdays li, .days li {width: 11.9%;}
+    .days li .active {padding: 2px;}
+}
+
+@media screen and (max-width: 290px) {
+    .weekdays li, .days li {width: 11.7%;}
 }
