@@ -217,7 +217,7 @@ $(document).ready(function(){
 			myGoals.push(userInputGoal);
 			prependGoal(userInputGoal, "#myGoals", 3);
 			$("#draftNewGoal").toggleClass("hidden");
-			$("#draftNewGoalBtn").children().toggleClass("glyphicon-menu-up glyphicon-remove");
+			$("#draftNewGoalBtn").children().toggleClass("glyphicon-menu-up glyphicon-asterisk");
 		    $("#myGoals li span").each(function() {
 		    	$(this).toggleClass('glyphicon-remove glyphicon-time');
 		    })
