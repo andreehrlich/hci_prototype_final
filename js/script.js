@@ -9,8 +9,8 @@ function getRandomIntInclusive(min, max) {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-// The function above was taken from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
-// We did not write the getRandomIntINclusive Function.
+/* The function above was taken from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+**  We did not write the getRandomIntINclusive Function. */
 
 // ***** Usage Map Feature ***** \\
    	var monthLength = 28;
@@ -153,7 +153,7 @@ function prependGoal(goal, parentElem, progress) {
 
 	var newElem =
 	'<li class="col-md-12">' +
-		'<span class="glyphicon glyphicon-remove col-md-3"></span> ' + goal +
+		'<span class="btn-circle glyphicon glyphicon-remove col-md-3"></span> ' + goal +
 		'<div class="progress col-md-9" style="padding: 0;">' +
 			'<div class="col-md-12 progress-bar progress-bar-' + progressStatus + '" ' +
 				'role="progressbar"' +
@@ -214,15 +214,19 @@ $(document).ready(function(){
 			myGoals.push(userInputGoal);
 			prependGoal(userInputGoal, "#myGoals", 3);
 			$("#draftNewGoal").toggleClass("hidden");
-			$("#draftNewGoalBtn").children().toggleClass("glyphicon-menu-up glyphicon-plus");
+			$("#draftNewGoalBtn").children().toggleClass("glyphicon-menu-up glyphicon-remove");
 		    $("#myGoals li span").each(function() {
 		    	$(this).toggleClass('glyphicon-remove glyphicon-time');
 		    })
+		    // display infowindow that alerts user there new goals is registered.
+		    $("#goals").append('<li id="newGoalAlert" class="alert alert-success alert-dismissible">' +
+		    	'<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'+
+				'You have set a <strong>new goal!</strong></li>');
 		}
 	});
 
 	// Remove goal if the "remove" icon next to it is clicked.
-    $("#myGoals li span").click(function() {
+    $("#myGoals li").find("glyphicon-remove").click(function() {
     	$(this).parent().remove();
     	// we would also remove the goal from the goals db if we had one.
     });
