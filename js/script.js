@@ -153,13 +153,16 @@ function prependGoal(goal, parentElem, progress) {
 
 	var newElem =
 	'<li class="col-md-12">' +
-		'<span class="btn-circle glyphicon glyphicon-remove col-md-3"></span> ' + goal +
-		'<div class="progress col-md-9" style="padding: 0;">' +
-			'<div class="col-md-12 progress-bar progress-bar-' + progressStatus + '" ' +
-				'role="progressbar"' +
-				'style="width: ' + ((progress/monthLength)*100) + '%;">' + progress +'/'+monthLength +
+		'<span class="btn-circle glyphicon glyphicon-remove col-md-3"></span> ' +
+		'<div style="margin-left: 10px; padding: 0;" class="col-md-10">' +
+			'<p style="padding: 0;" class="col-md-12" >' + goal + '</p>' +
+			'<div class="progress col-md-12" style="padding: 0;">' +
+				'<div class="col-md-12 progress-bar progress-bar-' + progressStatus + '" ' +
+					'role="progressbar"' +
+					'style="width: ' + ((progress/monthLength)*100) + '%;">' + progress +'/'+monthLength +
+				'</div>'+
 			'</div>'+
-		'</div>'+
+		'</div>' +
 	'</li>';
 	console.log(newElem);
 	$(parentElem).prepend(newElem);
@@ -226,7 +229,7 @@ $(document).ready(function(){
 	});
 
 	// Remove goal if the "remove" icon next to it is clicked.
-    $("#myGoals li").find("glyphicon-remove").click(function() {
+    $("#myGoals li span").click(function() {
     	$(this).parent().remove();
     	// we would also remove the goal from the goals db if we had one.
     });

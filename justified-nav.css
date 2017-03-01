@@ -3,7 +3,9 @@
 a {
   color: #000;
 }
-
+p {
+  font-size: 16px;
+}
 h1, h2, h3, h4, h5, h6, .month{
   font-family: Georgia;
   margin: 0;
@@ -69,6 +71,7 @@ body {
 
  #interactions {
     margin-top: 20px;
+    padding: 0;
  }
 
 h1,#myGoalsTitle, #myProgressTitle, #interactions>h1 { /* #logoText*/
@@ -82,13 +85,15 @@ h1,#myGoalsTitle, #myProgressTitle, #interactions>h1 { /* #logoText*/
   text-align: left;
 }
 
+/* Button Stylings */
 .btn-circle {
-  height: 56px;
-  width: 56px;
-  font-size: 20px;
+  height: 46px;
+  width: 46px;
+  font-size: 30px;
   text-align: center;
-  padding: 0;
-  padding-top: 5px;
+  /*padding: 10px;*/
+  padding-top: 6px;
+  padding-left: 5px;
   border-radius: 50%;
   border: none;
   color: #FFFFFF;
@@ -101,11 +106,11 @@ h1,#myGoalsTitle, #myProgressTitle, #interactions>h1 { /* #logoText*/
   border: none;
   outline: 0 !important;
   /*box-shadow: 0 4px 0 0 #7B1FA2;*/
-  transform: translateY(1px);
+  transform: translateY(-6px);
 }
 .btn-circle:active{
   box-shadow: 0 0 #666;
-  transform: translateY(2px);
+  transform: translateY(-2px);
   outline: 0;
 
   /*box-shadow: 0 4px 0 0 #7B1FA2;*/
@@ -113,71 +118,48 @@ h1,#myGoalsTitle, #myProgressTitle, #interactions>h1 { /* #logoText*/
 
 .glyphicon.glyphicon-remove{
   box-shadow: 0 3px 10px 4px rgba(0,0,0,0.2) inset;
+  color: #FF0000!important;
+  background: linear-gradient(-45deg, #C3C3C3, #FFF);
+  padding-left: 8px;
+  padding-top: 8px;
 }
-.glyphicon.glyphicon-remove,
-.glyphicon.glyphicon-asterisk,
-.glyphicon.glyphicon-plus, {
-    font-size: 30px;
+
+.glyphicon.glyphicon-asterisk{
     color: white;
 }
 
-.glyphicon.glyphicon-plus {
-    font-size: 30px;
-    padding-top: 10px;
-    padding-left: 4px;
-    background-image: linear-gradient(to top,#563d7c 0,#6f5499 100%);
-}
-
-.glyphicon.glyphicon-ok {
-    font-size: 30px;
-}
-
-.glyphicon{
-  color: #FFF;
+.glyphicon-plus{
+  color: white;
+  background: linear-gradient(-45deg, #512DA8, rgba(64,40,200,0.6));
+  padding-left: 2px;
+  padding-top: 7px;
 }
 
 #draftNewGoalBtn{
     position: absolute;
     bottom: -10px;
     right: 25px;
+    height: 56px!important;
+    width: 56px!important;
+    padding-top: 13px;
+    padding-left: 13px;
     /*background: linear-gradient(-45deg, #FF5722, #FFF);*/
     background-image: linear-gradient(to bottom right,#ee7600 0, #FF8C00 100%);
 
 }
-#myGoals>li>.glyphicon{
-  border-radius: 50%;
-  margin: 8px;
-  padding: 8px;
-  text-align: center;
-  vertical-align: center;
-  font-size: 25px;
-  height: 40px;
-  width: 40px;
-}
-#myGoals>li>.glyphicon-remove{
-  color: #FF0000;
-  /*background-color: #C3C3C3;*/
-  background: linear-gradient(-45deg, #C3C3C3, #FFF);
-}
 
-#myGoals>li>.glyphicon-time{
+.glyphicon-time{
   color: #fff;
-  background-image: linear-gradient(to top,#563d7c 0,#6f5499 100%);
-  font-size: 35px!important;
+  /*background-image: linear-gradient(to top,#563d7c 0,#6f5499 100%);*/
+  background: linear-gradient(-45deg, #512DA8, rgba(64,40,200,0.6));
+  font-size: 30px;
   padding-top: 8px;
-  padding-left: 8px;
-  height: 56px;
-  width: 56px;
+  padding-right: 5px;
 }
-/*
-#myGoals>li>.glyphicon-house{
-  color: #white;
-  background: linear-gradient(-45deg, #512DA8, #fff);
-}
-*/
+/* END OF BUTTON STYLINGS*/
 #goals {
   padding: 0 0;
-
+  box-shadow: 0 5px 4px 0 rgba(0,0,0,0.5);
 }
 
 #draftNewGoal {
@@ -212,20 +194,17 @@ h1,#myGoalsTitle, #myProgressTitle, #interactions>h1 { /* #logoText*/
   margin-bottom: 0;
 }
 
-#goals{
-  box-shadow: 0 5px 4px 0 rgba(0,0,0,0.5);
-}
-#myGoals>li:first-child,
-#myInteractions>li:first-child {
-    margin-top: 5px;
-}
-
 #newGoalAlert {
   position: absolute;
   top: 40px;
   right: 0;
   transform: translateY(-10px);
   box-shadow: 0 3px 5px 3px rgba(0,0,0,0.9);
+}
+
+#myGoals>li:first-child,
+#myInteractions>li:first-child {
+    margin-top: 5px;
 }
 
 #myGoals>li,
@@ -235,15 +214,18 @@ h1,#myGoalsTitle, #myProgressTitle, #interactions>h1 { /* #logoText*/
     box-shadow: 0 5px 0 0 rgba(0,0,0,0.5);
     border-radius: 2px;
     padding: 10px;
+    padding-top: 20px;
     /*padding-right: 20px;*/
     /*padding-bottom: 15px;*/
     font-size: 18px;
     margin-top: 20px;
     background: linear-gradient(-45deg, #ddd, #eee);
 }
-#myInteractions>li>span{
+#myInteractions>li>span,
+#myGoals>li>span{
   background: radial-gradient(-45deg, #512DA8, #fff);
   border-radius: 50%;
+  margin: 4% 0;
 }
 /* END OF myGoals list styling*/
 
@@ -342,7 +324,7 @@ ul {list-style-type: none;}
 
 .weekdays li {
     display: inline-block;
-    width: 13%;
+    width: 12.9%;
     color: #F0F0F0;
     text-align: center;
     font-style: bold;
@@ -351,7 +333,7 @@ ul {list-style-type: none;}
 .days {
     background-color: #ddd;
     margin: 0;
-    padding: 0;
+    padding: 0 3px 7px 3px;
     border-top-right-radius: 0;
     border-top-left-radius: 0;
     border-bottom-left-radius: 4px;
@@ -362,13 +344,11 @@ ul {list-style-type: none;}
 .days li {
     list-style-type: none;
     display: inline-block;
-    width: 13.35%;
+    width: 12.9%;
     margin: 0;
+    margin-top: 7px;
     background: linear-gradient(-45deg, #ccc, #bbb);
     text-align: center;
-    /*padding-left: 6.5%;*/
-    /*padding-right: 6.5%;*/
-    /*font-size:14px;*/
     color: #F0F0F0;
     border-radius: 4px;
     box-shadow: 0 2px 0 0 rgba(0,0,0,0.5);
