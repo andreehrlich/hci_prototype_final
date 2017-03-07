@@ -147,6 +147,9 @@ function showMyGoals(listOfGoals, parentElem) {
 	for (x=0; x< listOfGoals.length; x++) {
 		prependGoal(listOfGoals[x], parentElem, getRandomIntInclusive(0, monthLength));
 	}
+	$("#myGoals li .btn-circle").each(function() {
+    	$(this).toggleClass('glyphicon-remove glyphicon-time');
+    })
 }
 
 function prependGoal(goal, parentElem, progress) {
@@ -168,7 +171,7 @@ function prependGoal(goal, parentElem, progress) {
 	var newElem =
 	'<li class="col-md-12 col-sm-12">' +
 		'<div class="col-md-12 col-sm-12" style="padding:0;">'+
-		'<span class="btn-circle glyphicon glyphicon-time col-md-2 col-sm-2"></span>'+
+		'<span class="btn-circle glyphicon glyphicon-remove col-md-2 col-sm-2"></span>'+
 		'<p class="col-md-10 col-sm-10 goalText">'+goal+'</p>' +
 		'</div>'+
 		'<div class="col-md-12 col-sm-12" style="padding:0;">'+
