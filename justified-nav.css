@@ -6,7 +6,7 @@ a {
 p {
   font-size: 16px;
 }
-h1, h2, h3, h4, h5, h6, .month{
+h1, .month{
   font-family: Georgia;
   margin: 0;
   background-color: #512DA8;
@@ -178,11 +178,13 @@ h1,#myGoalsTitle, #myProgressTitle{ /* #logoText*/
   padding: 0;
   box-shadow: 0 2px 8px 5px rgba(0,0,0,0.2);
   overflow-y: auto;
-  max-height: 475px;
+  max-height: 465px;
   margin-bottom: 0;
 }
+
 #myInteractions {
-    max-height: 700px;
+    max-height: 715px;
+    background: #666;
 }
 
 .weekView > div {
@@ -241,16 +243,27 @@ the issue here: https://github.com/twbs/bootstrap/issues/12848 */
 #myInteractions>li>h1>span{
   /*height: 40px;*/
   /*width: 40px;*/
+  margin-top: 5px;
   padding-top: 0;
   padding-left: 0;
   font-size: 40px;
+    background: linear-gradient(-45deg, #512DA8, rgba(64,40,200,0.6));
+
+}
+#myInteractions>li>h1{
+  background: linear-gradient(-45deg, #666, #aaa);
+  height: 60px;
+  font-size: 36px;
 }
 #myGoals>li:first-child{
   border-top: none;
 }
-#myInteractions>ul>ol>li:last-child {
+#myInteractions>li>ol>li:last-child {
     /*margin-top: 5px;*/
     border-bottom: none;
+    padding-bottom: 10px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 4px;
 }
 
 #myGoals>li,
@@ -278,7 +291,8 @@ the issue here: https://github.com/twbs/bootstrap/issues/12848 */
 }
 #myInteractions>li>ol {
   padding: 0;
-  /*margin-left: 5px;*/
+  margin: 15px;
+  margin-top: 0;
   font-size: 18px;
   list-style: none;
 }
@@ -293,9 +307,8 @@ the issue here: https://github.com/twbs/bootstrap/issues/12848 */
   font-size: 24px !important;
   margin: 0;
   padding-left: 60px;
+  padding-right: 10px;
   border-bottom: 1px solid black;
-  /*border-radius: 4px;*/
-  /*overflow-x: hidden;*/
 }
 #myInteractions>li>.btn-circle,
 #myGoals>li>.btn-circle{
@@ -320,12 +333,17 @@ the issue here: https://github.com/twbs/bootstrap/issues/12848 */
 /* END OF myGoals list styling*/
 
 /* Style infowindow for  google map */
+#content {
+}
+
 #firstHeading {
   /*text-decoration: underline;*/
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  font-size: 30px;
 }
 #secondHeading {
   margin-top: 5px;
+  font-size: 26px;
 }
 
 #map {

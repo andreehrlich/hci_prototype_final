@@ -20,9 +20,9 @@ function getRandomIntInclusive(min, max) {
 // may expand to have activity overview.
 function createInfoWindowHTML(location, when, socialmedia, duration){
 	var newcontent = '<div id="content">'+
-	'<h3 style="background-color: #FFF;">You spent ' + duration + ' on ' + socialmedia + ' at ' + location +'</h3>' +
+	'<h3 id="firstHeading">You spent ' + duration + ' on ' + socialmedia + ' at ' + location +'.</h3>' +
 	// '<h2 style="background-color: #FFF!important; " id="firstHeading" class="firstHeading">'+ location +'</h2>'+
-	'<h4 style="background-color: #FFF!important; " id="secondHeading" class="secondHeading"> From ' + when + '</h4>'+
+	'<h4 id="secondHeading" class="secondHeading"> From ' + when + '</h4>'+
 	'<div id="bodyContent">'+
 	'</div>'+
 	'</div>';
