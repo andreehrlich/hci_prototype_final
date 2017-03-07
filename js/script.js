@@ -169,7 +169,7 @@ function prependGoal(goal, parentElem, progress) {
 	'<li class="col-md-12 col-sm-12">' +
 		'<div class="col-md-12 col-sm-12" style="padding:0;">'+
 		'<span class="btn-circle glyphicon glyphicon-time col-md-2 col-sm-2"></span>'+
-		'<p class="col-md-10 col-sm-10">'+goal+'</p>' +
+		'<p class="col-md-10 col-sm-10 goalText">'+goal+'</p>' +
 		'</div>'+
 		'<div class="col-md-12 col-sm-12" style="padding:0;">'+
 			'<span class="col-md-2 col-sm-2" id="progressBarText">' + progress +'/'+monthLength +'</span>'+
@@ -281,6 +281,8 @@ $(document).ready(function(){
 		    $("#goals").append('<li id="newGoalAlert" class="alert alert-success alert-dismissible">' +
 		    	'<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'+
 				'You have set a <strong>new goal!</strong></li>');
+		    //clear the user's inputted text, so it doesn't show up next time.
+		    $("#newGoalInput").val("");
 		}
 	});
 

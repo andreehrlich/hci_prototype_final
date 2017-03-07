@@ -16,7 +16,6 @@ h1, h2, h3, h4, h5, h6, .month{
   border-bottom-left-radius: 0;
   border-top-right-radius: 4px;
   border-top-left-radius: 4px;
-
 }
 
 .hidden {
@@ -74,7 +73,7 @@ body {
     padding: 0;
  }
 
-h1,#myGoalsTitle, #myProgressTitle, #interactions>h1 { /* #logoText*/
+h1,#myGoalsTitle, #myProgressTitle{ /* #logoText*/
   box-shadow: 0 3px 10px 4px rgba(0,0,0,0.2);
   color: #FFF;
   padding: 5px;
@@ -134,7 +133,8 @@ h1,#myGoalsTitle, #myProgressTitle, #interactions>h1 { /* #logoText*/
   padding-top: 7px;
 }
 
-#draftNewGoalBtn{
+#draftNewGoalBtn,
+#editInteractions{
     position: absolute;
     bottom: -10px;
     right: 25px;
@@ -163,8 +163,11 @@ h1,#myGoalsTitle, #myProgressTitle, #interactions>h1 { /* #logoText*/
 
 #draftNewGoal {
   padding: 0;
+  z-index: 1;
   box-shadow: 0 3px 10px 4px rgba(0,0,0,0.2);
-
+  position: absolute;
+  bottom: 0px;
+  right: -410px;
 }
 
 /*Styling myGoals list*/
@@ -196,14 +199,15 @@ h1,#myGoalsTitle, #myProgressTitle, #interactions>h1 { /* #logoText*/
 
 .progress {
   margin-bottom: 0;
-  height: 25px;
+  height: 30px;
 }
 #progressBarText {
-  height: 25px;
+  height: 30px;
   float: bottom;
   font-size: 14px;
   color: white;
-  background: linear-gradient(-45deg, #999, #ccc);
+  /*background: linear-gradient(-45deg, #999, #ccc);*/
+  background: linear-gradient(-45deg, #888, #aaa);
   border-radius: 4px;
   text-align: center;
   vertical-align: middle;
@@ -228,27 +232,28 @@ the issue here: https://github.com/twbs/bootstrap/issues/12848 */
 
 #newGoalAlert {
   position: absolute;
-  top: 40px;
+  top: 30px;
   right: 0;
   transform: translateY(-10px);
   box-shadow: 0 3px 5px 3px rgba(0,0,0,0.4);
 }
 
-#myInteractions>li>span{
-  height: 40px;
-  width: 40px;
-  padding-top: 10px;
-  padding-left: 10px;
-
+#myInteractions>li>h1>span{
+  /*height: 40px;*/
+  /*width: 40px;*/
+  padding-top: 0;
+  padding-left: 0;
+  font-size: 40px;
 }
-#myGoals>li:first-child,
-#myInteractions>li:first-child {
+#myGoals>li:first-child{
+  border-top: none;
+}
+#myInteractions>ul>ol>li:last-child {
     /*margin-top: 5px;*/
-    border-top: none;
+    border-bottom: none;
 }
 
 #myGoals>li,
-#myInteractions>li,
 #myProgress>div
 {
     /*box-shadow: 0 5px 0 0 rgba(0,0,0,0.5);*/
@@ -261,20 +266,35 @@ the issue here: https://github.com/twbs/bootstrap/issues/12848 */
     border-top: 1px solid black;
     background: linear-gradient(-45deg, #ddd, #eee);
 }
+
+#myInteractions>li,
+{
+    border-radius: 2px;
+    padding: 15px;
+    padding-top: 15px;
+    padding-bottom: 25px;
+    font-size: 20px;
+    border-top: 1px solid black;
+}
 #myInteractions>li>ol {
   padding: 0;
   /*margin-left: 5px;*/
   font-size: 18px;
   list-style: none;
 }
+#myInteractions>li>ol>li:last-child(){
+  border-bottom: 1px solid black;
+}
 
 #myInteractions>li>ol>li{
-    background: linear-gradient(-45deg, #888, #aaa);
+  background: linear-gradient(-45deg, #ddd, #eee);
   padding: 5px;
-  color: white;
-  font-size: 24px;
-  margin: 5px;
-  border-radius: 4px;
+  color: black;
+  font-size: 24px !important;
+  margin: 0;
+  padding-left: 60px;
+  border-bottom: 1px solid black;
+  /*border-radius: 4px;*/
   /*overflow-x: hidden;*/
 }
 #myInteractions>li>.btn-circle,
@@ -283,10 +303,19 @@ the issue here: https://github.com/twbs/bootstrap/issues/12848 */
   border-radius: 50%;
   margin: 0;
 }
-
-#myGoals>li>p {
+#myGoals>li>div>span.btn-circle{
+  margin-top: 15px;
+  margin-bottom: 0;
+}
+.goalText {
   font-size: 18px;
-  paddin-top: 10%;
+  /*background: linear-gradient(-45deg, #888, #aaa);*/
+  padding: 5px;
+  padding-left: 10px;
+  color: black;
+  font-size: 24px !important;
+  margin-bottom: 5px;
+  border-radius: 4px;
 }
 /* END OF myGoals list styling*/
 
@@ -348,7 +377,8 @@ the issue here: https://github.com/twbs/bootstrap/issues/12848 */
   height: 74px;
   font-size: 16px;
   padding: 21px;
-
+  resize: none;
+  overflow: hidden;
 }
 
 
