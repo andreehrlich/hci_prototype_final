@@ -170,10 +170,6 @@ h1,#myGoalsTitle, #myProgressTitle, #interactions>h1 { /* #logoText*/
   font-size: 16px;
   color: #212121;
   padding: 0;
-  padding-bottom: 20px;
-  /*max-height: 345px;*/
-  /*overflow-y: auto;*/
-  /*overflow-x: visible;*/
 }
 
 .weekView > div {

@@ -161,12 +161,12 @@ function prependGoal(goal, parentElem, progress) {
 	}
 	var progressPercent = (progress/monthLength)*100;
 	var newElem =
-	'<li class="col-md-12">' +
-		'<span class="btn-circle glyphicon glyphicon-remove col-md-2"></span>'+
-		'<p class="col-md-10">'+goal+'</p>' +
-		'<span class="col-md-2" id="progressBarText">' + progress +'/'+monthLength +'</span>'+
-		'<div class="progress col-md-10" style="padding: 0;">' +
-			'<div class="col-md-12 progress-bar progress-bar-' + progressStatus + '" ' +
+	'<li class="col-md-12 col-sm-12">' +
+		'<span class="btn-circle glyphicon glyphicon-remove col-md-2 col-sm-2"></span>'+
+		'<p class="col-md-10 col-sm-10">'+goal+'</p>' +
+		'<span class="col-md-2 col-sm-2" id="progressBarText">' + progress +'/'+monthLength +'</span>'+
+		'<div class="progress col-md-10 col-sm-10" style="padding: 0;">' +
+			'<div class="col-md-12 col-sm-12 progress-bar progress-bar-' + progressStatus + '" ' +
 				'role="progressbar" aria-valuenow="'+progressPercent+'" aria-valuemin="0" aria-valuemax="100" ' +
 				'style="width: ' + progressPercent + '%;">' +
 			'</div>'+
@@ -228,7 +228,6 @@ $(document).ready(function(){
 	});
 
 	// Remove goal if the "remove" icon next to it is clicked.
-    // $("span.btn-circle.glyphicon.col-md-3.glyphicon-remove").click(function() {
     $('body').on('click', 'span.glyphicon-remove', function(e) {
     	$(this).parent().remove();
     	// we would also remove the goal from the goals db if we had one.
