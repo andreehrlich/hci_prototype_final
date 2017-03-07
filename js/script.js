@@ -83,7 +83,6 @@ var usageData = [
 [lakefill, createInfoWindowHTML("Lakefill", "11 a.m.-12:45 a.m", "Instagram", "15m"), markerInstagram],
 [spac, createInfoWindowHTML("SPAC", "9 a.m.-12:45 a.m", "Instagram", "15m"), markerInstagram],
 [plex, createInfoWindowHTML("Plex", "12:30 p.m.-12:45 a.m", "Facebook", "30m"), markerFacebook],
-[spac, createInfoWindowHTML("SPAC", "9 a.m.-12:45 a.m", "Instagram", "15m"), markerInstagram],
 [kemper2, createInfoWindowHTML("Kemper", "8:30 a.m.-12:45 a.m", "Twitter", "30m"), markerTwitter ],
 
 ];
@@ -91,7 +90,7 @@ var usageData = [
 // This is a fundamental function to generate the google map
 function initMap() {
 	var map = new google.maps.Map(document.getElementById('map'), {
-		zoom: 15,
+		zoom: 16,
 		center: {lat: 42.056869, lng:-87.675571}
 	});
 
@@ -102,8 +101,8 @@ function initMap() {
 			position: usageData[i][0],
 			map: map,
 			content: usageData[i][1],
-			icon: usageData[i][2],
-			animation: google.maps.Animation.DROP
+			icon: usageData[i][2]
+			// ,animation: google.maps.Animation.BOUNCE
 			/* This is buggy and we tried a few known workaround,
 			but couldn't get a really good solution. We think it's
 			better to have it buggy but show the pins drop in order
@@ -117,6 +116,16 @@ function initMap() {
 			infowindow.close();
 			infowindow.setContent(this.content);
 			infowindow.open(map, this);
+		});
+		//Make the markers bounce when your mouse hovers over them
+		google.maps.event.addListener(markers[i], 'mouseover', function() {
+			// Close old infowindow + open new one
+			this.setAnimation(google.maps.Animation.BOUNCE);
+		});
+		//Make the markers stop bouncing, when you stop hovering.
+		google.maps.event.addListener(markers[i], 'mouseover', function() {
+			// Close old infowindow + open new one
+			this.setAnimation(null);
 		});
 
 	}
@@ -138,10 +147,6 @@ function showMyGoals(listOfGoals, parentElem) {
 	for (x=0; x< listOfGoals.length; x++) {
 		prependGoal(listOfGoals[x], parentElem, getRandomIntInclusive(0, monthLength));
 	}
-	// hide the trash icon to start
-    $("#myGoals li .btn-circle").each(function() {
-    	$(this).toggleClass('glyphicon-remove glyphicon-time');
-    })
 }
 
 function prependGoal(goal, parentElem, progress) {
@@ -162,17 +167,21 @@ function prependGoal(goal, parentElem, progress) {
 	var progressPercent = (progress/monthLength)*100;
 	var newElem =
 	'<li class="col-md-12 col-sm-12">' +
-		'<span class="btn-circle glyphicon glyphicon-remove col-md-2 col-sm-2"></span>'+
+		'<div class="col-md-12 col-sm-12" style="padding:0;">'+
+		'<span class="btn-circle glyphicon glyphicon-time col-md-2 col-sm-2"></span>'+
 		'<p class="col-md-10 col-sm-10">'+goal+'</p>' +
-		'<span class="col-md-2 col-sm-2" id="progressBarText">' + progress +'/'+monthLength +'</span>'+
-		'<div class="progress col-md-10 col-sm-10" style="padding: 0;">' +
-			'<div class="col-md-12 col-sm-12 progress-bar progress-bar-' + progressStatus + '" ' +
-				'role="progressbar" aria-valuenow="'+progressPercent+'" aria-valuemin="0" aria-valuemax="100" ' +
-				'style="width: ' + progressPercent + '%;">' +
+		'</div>'+
+		'<div class="col-md-12 col-sm-12" style="padding:0;">'+
+			'<span class="col-md-2 col-sm-2" id="progressBarText">' + progress +'/'+monthLength +'</span>'+
+			'<div class="progress col-md-10 col-sm-10" style="padding: 0;">' +
+				'<div class="col-md-12 col-sm-12 progress-bar progress-bar-' + progressStatus + '" ' +
+					'role="progressbar" aria-valuenow="'+progressPercent+'" aria-valuemin="0" aria-valuemax="100" ' +
+					'style="width: ' + progressPercent + '%;">' +
+				'</div>'+
 			'</div>'+
 		'</div>'+
 	'</li>';
-	console.log(newElem);
+	// console.log(newElem);
 	$(parentElem).prepend(newElem);
 }
 
@@ -187,17 +196,67 @@ var myGoals =[
 	// ,"Don't use Twitter at lunch."
 ];
 
+var myInteractions = [
+	["SpongeBob SquarePants", "Exchanged 1000 messages on Facebook this month.", "You liked 10 of their photos on Instagram.", "They favorited 6 of your tweets.", "You were tagged in 12 of their photos together."],
+	["Patrick Star", "Sent you 9 snaps this month.", "You commented on 4 of their posts.", "You retweeted 9 of their tweets."],
+	["Sandy Cheeks", "@replied them 12 times on Twitter.", "You exchanged 20 direct messages on Twitter.", "They commented on 3 of your Facebook statuses."]
+];
+// Interactions
+// function showMyInteractions(listOfInteractions, parentElem) {
+
+// 	var interaction, newElem, interactionHTML = "";
+// 	console.log("length of interactions: " + listOfInteractions.length);
+// 	for (var x=0; x<listOfInteractions.length; x++) {
+// 		console.log("x: " + x);
+// 		interaction = listOfInteractions[x];
+// 		newElem =
+// 			'<li class="col-md-12 col-sm-12">' +
+// 			'<span class="btn-circle glyphicon glyphicon-menu-down col-md-2 col-sm-2"></span>'+
+// 			interaction[0]+
+// 			'<ul>';
+// 		// Create list elements for everthing else in 'interaction'
+// 		for (var x=1; x<interaction.length; x++) {
+// 			newElem = newElem + '<li>'+interaction[x]+'</li>';
+// 		}
+// 		newElem = newElem + '</ul></li>';
+// 		// append this to interactionHTML before sending to HTML DOM.
+// 		interactionHTML = interactionHTML + newElem;
+// 	}
+// 	console.log(interactionHTML);
+// 	$(parentElem).prepend(interactionHTML);
+
+// }
+
+function preprendInteraction(interaction, parentElem) {
+
+	var newElem =
+	'<li class="col-md-12 col-sm-12">' +
+		'<div class="col-md-12 col-sm-12" style="padding:0;">'+
+		'<span class="btn-circle glyphicon glyphicon-menu-down col-md-2 col-sm-2"></span>'+
+		interaction[0]+
+		'</div>'+
+		'<ul>';
+	// Create list elements for everthing else in 'interaction'
+	for (x=1; x<interaction.length; x++) {
+		newElem = newElem + '<li>'+interaction[x]+'</li>';
+	}
+	newElem = newElem + '</ul></li>';
+	console.log(newElem);
+	$(parentElem).prepend(newElem);
+
+}
+
+// Color information for calendar.
 var goalStatusLegend = ["#ec971f", "#c9302c", "#449d44"];
-
-
 var tmpInd, statusColor;
 
 // We need to wait for the document to be "ready" before we can update html elements
 // like the list of goals.
 $(document).ready(function(){
 
-	// Make our scrollbar nicer for goals
-    $('#myGoals').slimScroll({ height: '490px' });
+	// Make our scrollbar nicer for scrolls
+    // $('#myGoals').slimScroll({ height: '475px' });
+    // $('#myInteractions').slimScroll({ height: '475px' });
 
 	// call tootip if the element is hovered.
     $('[data-toggle="tooltip"]').tooltip();
@@ -205,8 +264,6 @@ $(document).ready(function(){
     // display myGoals array as a list in the dom.
 	showMyGoals(myGoals,"#myGoals");
 
-	// The user has clicked the Green Button with a check mark on it
-	// to submit a new goal to the list.
 	$("#newGoalSubmit").click(function() {
 		// alert("CLICKED BITCH");
 		var userInputGoal = $("#newGoalInput").val();
@@ -214,7 +271,7 @@ $(document).ready(function(){
 		if (userInputGoal !== "") {
 			// alert(userInputGoal);
 			myGoals.push(userInputGoal);
-			prependGoal(userInputGoal, "#myGoals", 3);
+			prependGoal(userInputGoal, "#myGoals", 0);
 			$("#draftNewGoal").toggleClass("hidden");
 			$("#draftNewGoalBtn").children().toggleClass("glyphicon-menu-up glyphicon-pencil");
 		    $("#myGoals li .btn-circle").each(function() {
@@ -229,9 +286,18 @@ $(document).ready(function(){
 
 	// Remove goal if the "remove" icon next to it is clicked.
     $('body').on('click', 'span.glyphicon-remove', function(e) {
-    	$(this).parent().remove();
-    	// we would also remove the goal from the goals db if we had one.
+    	$(this).parent().parent().remove();
     });
+
+	$('body').on('click', 'span.glyphicon-menu-down', function(e) {
+		$(this).parent().next().toggleClass("hidden");
+		$(this).toggleClass("glyphicon-menu-down glyphicon-menu-right");
+	});
+
+	$('body').on('click', 'span.glyphicon-menu-right', function(e) {
+		$(this).parent().next().toggleClass("hidden");
+		$(this).toggleClass("glyphicon-menu-down glyphicon-menu-right");
+	});
 
     	// Click the circular orange button to draft a new goal.
 	$("#draftNewGoalBtn").click(function() {

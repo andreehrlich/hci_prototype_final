@@ -116,12 +116,15 @@ h1,#myGoalsTitle, #myProgressTitle, #interactions>h1 { /* #logoText*/
   /*box-shadow: 0 4px 0 0 #7B1FA2;*/
 }
 
-.glyphicon.glyphicon-remove{
+.glyphicon-remove{
   box-shadow: 0 3px 10px 4px rgba(0,0,0,0.2) inset;
   color: #FF0000!important;
   background: linear-gradient(-45deg, #C3C3C3, #FFF);
   padding-left: 8px;
   padding-top: 8px;
+}
+.glyphicon-ok {
+
 }
 
 .glyphicon-plus{
@@ -170,6 +173,13 @@ h1,#myGoalsTitle, #myProgressTitle, #interactions>h1 { /* #logoText*/
   font-size: 16px;
   color: #212121;
   padding: 0;
+  box-shadow: 0 2px 8px 5px rgba(0,0,0,0.2);
+  overflow-y: auto;
+  max-height: 475px;
+  margin-bottom: 0;
+}
+#myInteractions {
+    max-height: 700px;
 }
 
 .weekView > div {
@@ -193,7 +203,7 @@ h1,#myGoalsTitle, #myProgressTitle, #interactions>h1 { /* #logoText*/
   float: bottom;
   font-size: 14px;
   color: white;
-  background: linear-gradient(-45deg, #bbb, #ccc);
+  background: linear-gradient(-45deg, #999, #ccc);
   border-radius: 4px;
   text-align: center;
   vertical-align: middle;
@@ -221,27 +231,51 @@ the issue here: https://github.com/twbs/bootstrap/issues/12848 */
   top: 40px;
   right: 0;
   transform: translateY(-10px);
-  box-shadow: 0 3px 5px 3px rgba(0,0,0,0.9);
+  box-shadow: 0 3px 5px 3px rgba(0,0,0,0.4);
 }
 
+#myInteractions>li>span{
+  height: 40px;
+  width: 40px;
+  padding-top: 10px;
+  padding-left: 10px;
+
+}
 #myGoals>li:first-child,
 #myInteractions>li:first-child {
-    margin-top: 5px;
+    /*margin-top: 5px;*/
+    border-top: none;
 }
 
 #myGoals>li,
 #myInteractions>li,
 #myProgress>div
 {
-    box-shadow: 0 5px 0 0 rgba(0,0,0,0.5);
+    /*box-shadow: 0 5px 0 0 rgba(0,0,0,0.5);*/
     border-radius: 2px;
     padding: 10px;
-    padding-top: 20px;
-    /*padding-right: 20px;*/
-    /*padding-bottom: 15px;*/
-    font-size: 18px;
-    margin-top: 20px;
+    padding-top: 15px;
+    padding-bottom: 25px;
+    font-size: 20px;
+    /*margin-top: 20px;*/
+    border-top: 1px solid black;
     background: linear-gradient(-45deg, #ddd, #eee);
+}
+#myInteractions>li>ol {
+  padding: 0;
+  /*margin-left: 5px;*/
+  font-size: 18px;
+  list-style: none;
+}
+
+#myInteractions>li>ol>li{
+    background: linear-gradient(-45deg, #888, #aaa);
+  padding: 5px;
+  color: white;
+  font-size: 24px;
+  margin: 5px;
+  border-radius: 4px;
+  /*overflow-x: hidden;*/
 }
 #myInteractions>li>.btn-circle,
 #myGoals>li>.btn-circle{
@@ -252,6 +286,7 @@ the issue here: https://github.com/twbs/bootstrap/issues/12848 */
 
 #myGoals>li>p {
   font-size: 18px;
+  paddin-top: 10%;
 }
 /* END OF myGoals list styling*/
 
