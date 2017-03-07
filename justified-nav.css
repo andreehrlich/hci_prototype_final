@@ -124,10 +124,6 @@ h1,#myGoalsTitle, #myProgressTitle, #interactions>h1 { /* #logoText*/
   padding-top: 8px;
 }
 
-.glyphicon.glyphicon-asterisk{
-    color: white;
-}
-
 .glyphicon-plus{
   color: white;
   background: linear-gradient(-45deg, #512DA8, rgba(64,40,200,0.6));
@@ -188,11 +184,41 @@ h1,#myGoalsTitle, #myProgressTitle, #interactions>h1 { /* #logoText*/
 }
 
 .progress-bar {
-  height: 20px;
+  height: 100%;
+  text-align: right;
 }
+
 .progress {
   margin-bottom: 0;
+  height: 25px;
 }
+#progressBarText {
+  height: 25px;
+  float: bottom;
+  font-size: 14px;
+  color: white;
+  background: linear-gradient(-45deg, #bbb, #ccc);
+  border-radius: 4px;
+  text-align: center;
+  vertical-align: middle;
+  padding: 3px 2px;
+}
+/* The following block of code was provided by github user stubbornella, to address
+issues with the bootstrap progress bar when is is <= 3%. You can find her contribution to
+the issue here: https://github.com/twbs/bootstrap/issues/12848 */
+.progress-bar[aria-valuenow="1"],
+.progress-bar[aria-valuenow="2"]{
+  min-width: 3%;
+}
+.progress-bar[aria-valuenow="0"] {
+  min-width: 3%;
+  background: transparent;
+  box-shadow: none;
+  color: black;
+}
+/* The block of code above was provided by github user stubbornella, to address
+issues with the bootstrap progress bar when is is <= 3%. You can find her contribution to
+the issue here: https://github.com/twbs/bootstrap/issues/12848 */
 
 #newGoalAlert {
   position: absolute;
@@ -221,11 +247,15 @@ h1,#myGoalsTitle, #myProgressTitle, #interactions>h1 { /* #logoText*/
     margin-top: 20px;
     background: linear-gradient(-45deg, #ddd, #eee);
 }
-#myInteractions>li>span,
-#myGoals>li>span{
+#myInteractions>li>.btn-circle,
+#myGoals>li>.btn-circle{
   background: radial-gradient(-45deg, #512DA8, #fff);
   border-radius: 50%;
-  margin: 4% 0;
+  margin: 0;
+}
+
+#myGoals>li>p {
+  font-size: 18px;
 }
 /* END OF myGoals list styling*/
 

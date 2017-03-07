@@ -97,24 +97,33 @@ function initMap() {
 
 	//use usageData array to make markers on the map
 	var markers=[];
-	for (i=0;i<usageData.length;i++){
+	for (var i=0;i<usageData.length;i++){
 		markers[i] = new google.maps.Marker({
 			position: usageData[i][0],
 			map: map,
 			content: usageData[i][1],
-			icon: usageData[i][2]
-		})
+			icon: usageData[i][2],
+			animation: google.maps.Animation.DROP
+			/* This is buggy and we tried a few known workaround,
+			but couldn't get a really good solution. We think it's
+			better to have it buggy but show the pins drop in order
+			for the user to understand that they can click the pins.*/
+		});
+
+
 		//Make the markers clickable, displaying content about social media usage.
 		google.maps.event.addListener(markers[i], 'click', function() {
-			infowindow.close(); // Close the previously open window, if there is one.
-			infowindow.setContent(this.content); // Set new content to info window.
-		infowindow.open(map, this); // open the info window above the clicked marker.
-	});
+			// Close old infowindow + open new one
+			infowindow.close();
+			infowindow.setContent(this.content);
+			infowindow.open(map, this);
+		});
+
 	}
+
 
 	//This variable will handle the information for all the markers on the map
 	var infowindow = new google.maps.InfoWindow({});
-
 
   // Load the map when Usage tab is opened.
   $('a[href=".usage"]').on('shown.bs.tab', function(e){
@@ -130,14 +139,14 @@ function showMyGoals(listOfGoals, parentElem) {
 		prependGoal(listOfGoals[x], parentElem, getRandomIntInclusive(0, monthLength));
 	}
 	// hide the trash icon to start
-    $("#myGoals li span").each(function() {
+    $("#myGoals li .btn-circle").each(function() {
     	$(this).toggleClass('glyphicon-remove glyphicon-time');
     })
 }
 
 function prependGoal(goal, parentElem, progress) {
 	var progressStatus;
-
+	console.log("progress: " + progress);
 	// the progress bar goes from -100 to 100, based on whether user is progressing or regressing.
 	// use the margin to create the offset visually.
 	var warningLevel = monthLength * 2/3;
@@ -150,19 +159,18 @@ function prependGoal(goal, parentElem, progress) {
 	} else {
 		progressStatus = "danger";
 	}
-
+	var progressPercent = (progress/monthLength)*100;
 	var newElem =
 	'<li class="col-md-12">' +
-		'<span class="btn-circle glyphicon glyphicon-remove col-md-3"></span> ' +
-		'<div style="margin-left: 10px; padding: 0;" class="col-md-10">' +
-			'<p style="padding: 0;" class="col-md-12" >' + goal + '</p>' +
-			'<div class="progress col-md-12" style="padding: 0;">' +
-				'<div class="col-md-12 progress-bar progress-bar-' + progressStatus + '" ' +
-					'role="progressbar"' +
-					'style="width: ' + ((progress/monthLength)*100) + '%;">' + progress +'/'+monthLength +
-				'</div>'+
+		'<span class="btn-circle glyphicon glyphicon-remove col-md-2"></span>'+
+		'<p class="col-md-10">'+goal+'</p>' +
+		'<span class="col-md-2" id="progressBarText">' + progress +'/'+monthLength +'</span>'+
+		'<div class="progress col-md-10" style="padding: 0;">' +
+			'<div class="col-md-12 progress-bar progress-bar-' + progressStatus + '" ' +
+				'role="progressbar" aria-valuenow="'+progressPercent+'" aria-valuemin="0" aria-valuemax="100" ' +
+				'style="width: ' + progressPercent + '%;">' +
 			'</div>'+
-		'</div>' +
+		'</div>'+
 	'</li>';
 	console.log(newElem);
 	$(parentElem).prepend(newElem);
@@ -183,15 +191,6 @@ var goalStatusLegend = ["#ec971f", "#c9302c", "#449d44"];
 
 
 var tmpInd, statusColor;
-// function showProgressOnCalendar(){
-// 	$(".days li").each(function() {
-// 		tmpInd = getRandomIntInclusive(0,2);
-// 		statusColor = goalStatusLegend[tmpInd];
-// 		statusColor = '\"background-color: ' + statusColor + '\"';
-// 		$(this).css(statusColor);
-// 	})
-// }
-
 
 // We need to wait for the document to be "ready" before we can update html elements
 // like the list of goals.
@@ -217,8 +216,8 @@ $(document).ready(function(){
 			myGoals.push(userInputGoal);
 			prependGoal(userInputGoal, "#myGoals", 3);
 			$("#draftNewGoal").toggleClass("hidden");
-			$("#draftNewGoalBtn").children().toggleClass("glyphicon-menu-up glyphicon-asterisk");
-		    $("#myGoals li span").each(function() {
+			$("#draftNewGoalBtn").children().toggleClass("glyphicon-menu-up glyphicon-pencil");
+		    $("#myGoals li .btn-circle").each(function() {
 		    	$(this).toggleClass('glyphicon-remove glyphicon-time');
 		    })
 		    // display infowindow that alerts user there new goals is registered.
@@ -229,7 +228,8 @@ $(document).ready(function(){
 	});
 
 	// Remove goal if the "remove" icon next to it is clicked.
-    $("#myGoals li span").click(function() {
+    // $("span.btn-circle.glyphicon.col-md-3.glyphicon-remove").click(function() {
+    $('body').on('click', 'span.glyphicon-remove', function(e) {
     	$(this).parent().remove();
     	// we would also remove the goal from the goals db if we had one.
     });
@@ -237,10 +237,10 @@ $(document).ready(function(){
     	// Click the circular orange button to draft a new goal.
 	$("#draftNewGoalBtn").click(function() {
 		$("#draftNewGoal").toggleClass("hidden");
-	    $("i", this).toggleClass("glyphicon-menu-up glyphicon-asterisk");
+	    $("i", this).toggleClass("glyphicon-menu-up glyphicon-pencil");
 	    // Make a clickable icon next to each existing goal
 	    // this will let user delete goals.
-	    $("#myGoals li span").each(function() {
+	    $("#myGoals li .btn-circle").each(function() {
 	    	$(this).toggleClass('glyphicon-remove glyphicon-time');
 	    })
 	});
