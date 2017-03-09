@@ -70,7 +70,7 @@ body {
 }
 /*************************/
 
-#myProgress, #usage, #goals, #draftNewGoal{
+#myProgress, #usage, #goals, #draftNewGoal, #draftNewInteraction{
   margin-top: 20px;
 }
 
@@ -126,7 +126,7 @@ h1,#myGoalsTitle, #myProgressTitle{ /* #logoText*/
 .glyphicon-remove{
   box-shadow: 0 3px 10px 4px rgba(0,0,0,0.2) inset;
   color: #FF0000!important;
-  background: linear-gradient(-45deg, #C3C3C3, #FFF);
+  background: linear-gradient(-45deg, #C3C3C3, #FFF)!important;
   padding-left: 8px;
   padding-top: 8px;
 }
@@ -185,7 +185,7 @@ h1,#myGoalsTitle, #myProgressTitle{ /* #logoText*/
   height: 434px;
 }
 
-#draftNewGoal {
+#draftNewGoal, #draftNewInteraction {
   padding: 0;
   /*z-index: 1;*/
   box-shadow: 0 3px 10px 4px rgba(0,0,0,0.2);
@@ -214,6 +214,9 @@ h1,#myGoalsTitle, #myProgressTitle{ /* #logoText*/
   height: 470px;
 }
 
+#interactions{
+  height: 769px;
+}
 #myInteractions {
     max-height: 715px;
     background: #666;
@@ -276,10 +279,10 @@ the issue here: https://github.com/twbs/bootstrap/issues/12848 */
   /*height: 40px;*/
   /*width: 40px;*/
   margin-top: 5px;
-  padding-top: 0;
+  padding-top: 5px;
   padding-left: 0;
-  font-size: 40px;
-    background: linear-gradient(-45deg, #512DA8, rgba(64,40,200,0.6));
+  font-size: 30px;
+  background: linear-gradient(-45deg, #512DA8, rgba(64,40,200,0.6));
 
 }
 #myInteractions>li>h1{
@@ -418,7 +421,12 @@ the issue here: https://github.com/twbs/bootstrap/issues/12848 */
 
 /* Done Styling infowindow for google map*/
 
-#newGoalSubmit{
+#newGoalSubmit {
+  font-size: 40px;
+  padding-top: 13px;
+  height: 85px;
+}
+#newInteractionSubmit{
   font-size: 50px;
   height: 85px;
 }
@@ -438,7 +446,7 @@ the issue here: https://github.com/twbs/bootstrap/issues/12848 */
   /*box-shadow: 0 4px 0 0 #7B1FA2;*/
 }
 
-#newGoalInput{
+#newGoalInput, #newInteractionInput{
   height: 85px;
   font-size: 20px;
   padding: 21px;

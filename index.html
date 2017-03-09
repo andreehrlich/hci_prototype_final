@@ -118,7 +118,7 @@
       <h1 class="col-md-12 col-sm-12"><span class="glyphicon glyphicon-user"></span> Interactions</h1>
       <ul id="myInteractions" class="col-md-12 col-sm-12">
         <li>
-          <h1><span class="btn-circle glyphicon glyphicon-triangle-top"></span> SpongeBob SquarePants</h1>
+          <h1><span class="btn-circle glyphicon glyphicon-triangle-top icon"></span> SpongeBob</h1>
           <ol>
             <li>Exchanged 1000 messages on Facebook this month.</li>
             <li>You liked 10 of their photos on Instagram.</li>
@@ -127,7 +127,7 @@
           </ol>
         </li>
         <li>
-          <h1><span class="btn-circle glyphicon glyphicon-triangle-top"></span> Patrick Star</h1>
+          <h1><span class="btn-circle glyphicon glyphicon-triangle-top icon"></span> Patrick Star</h1>
           <ol>
             <li>Sent you 9 snaps this month.</li>
             <li>You retweeted 9 of their tweets.</li>
@@ -136,7 +136,7 @@
           </ol>
         </li>
         <li>
-          <h1><span class="btn-circle glyphicon glyphicon-triangle-top"></span> Sandy Cheeks</h1>
+          <h1><span class="btn-circle glyphicon glyphicon-triangle-top icon"></span> Sandy Cheeks</h1>
           <ol>
             <li>@replied them 12 times on Twitter.</li>
             <li>You exchanged 20 direct messages on Twitter.</li>
@@ -147,6 +147,12 @@
       </ul>
       <button id="editInteractions" data-toggle="tooltip" title="Edit Interactions" data-placement="left" type="button" class="btn btn-circle"><i class="glyphicon glyphicon-pencil"></i></button>
     </div> <!-- /interactions -->
+    <div id="draftNewInteraction" class="col-md-12 col-sm-12 hidden">
+      <h1><span class="glyphicon glyphicon-pencil"></span> Add a friend </h1>
+      <textarea id="newInteractionInput" class="col-md-10 col-sm-10" placeholder=' "Aunt Sally." '></textarea>
+      <a id="newInteractionSubmit" class="btn1 col-md-2 col-sm-2 btn btn-md" role="button" data-toggle="tooltip" title="Submit" data-placement="left" ><span class="glyphicon glyphicon-ok"></span></a>
+    </div>
+
   </div> <!-- /rightPane -->
 
 </div> <!-- /container -->

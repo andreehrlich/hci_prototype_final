@@ -171,7 +171,7 @@ function prependGoal(goal, parentElem, progress) {
 	var newElem =
 	'<li class="col-md-12 col-sm-12">' +
 		'<div class="col-md-12 col-sm-12" style="padding:0;">'+
-		'<span class="btn-circle glyphicon glyphicon-remove col-md-2 col-sm-2 icon"></span>'+
+		'<span data-toggle="tooltip" title="Remove goal" data-placement="right" class="btn-circle glyphicon glyphicon-remove col-md-2 col-sm-2 icon"></span>'+
 		'<p class="col-md-10 col-sm-10 goalText">'+goal+'</p>' +
 		'</div>'+
 		'<div class="col-md-12 col-sm-12" style="padding:0;">'+
@@ -204,23 +204,16 @@ var myInteractions = [
 	["Sandy Cheeks", "@replied them 12 times on Twitter.", "You exchanged 20 direct messages on Twitter.", "They commented on 3 of your Facebook statuses."]
 ];
 
-function preprendInteraction(interaction, parentElem) {
-
+function prependInteraction(friendName, parentElem) {
 	var newElem =
-	'<li class="col-md-12 col-sm-12">' +
-		'<div class="col-md-12 col-sm-12" style="padding:0;">'+
-		'<span class="btn-circle glyphicon glyphicon-triangle-top col-md-2 col-sm-2"></span>'+
-		interaction[0]+
-		'</div>'+
-		'<ul>';
-	// Create list elements for everthing else in 'interaction'
-	for (x=1; x<interaction.length; x++) {
-		newElem = newElem + '<li>'+interaction[x]+'</li>';
-	}
-	newElem = newElem + '</ul></li>';
+        '<li>'+
+          '<h1><span class="btn-circle glyphicon glyphicon-remove icon"></span>'+friendName+'</h1>'+
+          '<ol>'+
+            '<li>*New friend!*</li>'+
+          '</ol>'+
+        '</li>';
 	console.log(newElem);
 	$(parentElem).prepend(newElem);
-
 }
 
 // Color information for calendar.
@@ -231,10 +224,6 @@ var tmpInd, statusColor;
 // like the list of goals.
 $(document).ready(function(){
 
-	// Make our scrollbar nicer for scrolls
-    // $('#myGoals').slimScroll({ height: '475px' });
-    // $('#myInteractions').slimScroll({ height: '475px' });
-
 	// call tootip if the element is hovered.
     $('[data-toggle="tooltip"]').tooltip();
 
@@ -242,7 +231,6 @@ $(document).ready(function(){
 	showMyGoals(myGoals,"#myGoals");
 
 	$("#newGoalSubmit").click(function() {
-		// alert("CLICKED BITCH");
 		var userInputGoal = $("#newGoalInput").val();
 		console.log("userInputGoal", userInputGoal);
 		if (userInputGoal !== "") {
@@ -315,8 +303,6 @@ $(document).ready(function(){
 			$("#myGoals").css('height', '470px')
 			$('#draftNewGoalBtn').attr('data-original-title','Edit Goals'); //and that's it.
 		}
-		var goalsHeight = $('#goals').height()
-		$("#goals").css('height', 'px')
 		$("#draftNewGoal").toggleClass("hidden");
 	    $("i", this).toggleClass("glyphicon-triangle-left glyphicon-pencil");
 	    // Make a clickable icon next to each existing goal
@@ -324,6 +310,80 @@ $(document).ready(function(){
 	    $("#myGoals li .icon").each(function() {
 	    	$(this).toggleClass('glyphicon-remove glyphicon-time');
 	    })
+	});
+
+	// Click the circular orange button to edit Interactions.
+	$("#editInteractions").click(function() {
+		// Decrease the heigh of the goals list to include the new goal box below it.
+		if ($('#interactions').height() == 769) {
+			$("#interactions").css('height', '613px')
+			$("#myInteractions").css('height', '569px')
+			$('#editInteractions').attr('data-original-title','Go back'); //and that's it.
+		} else {
+			$("#interactions").css('height', '769px')
+			$("#myInteractions").css('height', '715px')
+			$('#editInteractions').attr('data-original-title','Edit Interactions'); //and that's it.
+		}
+		$("#draftNewInteraction").toggleClass("hidden");
+	    $("i", this).toggleClass("glyphicon-triangle-left glyphicon-pencil");
+	    // Make a clickable icon next to each existing goal
+	    // this will let user delete goals.
+	    $("#myInteractions li .icon").each(function() {
+	    	if ( $(this).hasClass('glyphicon-triangle-down') ){
+		    	$(this).toggleClass('glyphicon-remove glyphicon-triangle-bottom');
+		    } else {
+		    	$(this).toggleClass('glyphicon-remove glyphicon-triangle-top');
+		    }
+	    })
+	});
+
+	$("#newInteractionSubmit").click(function() {
+		var userInputInteraction = $("#newInteractionInput").val();
+		console.log("userInputInteraction", userInputInteraction);
+		if (userInputInteraction !== "") {
+			myInteractions.push(userInputInteraction);
+			prependInteraction(userInputInteraction, "#myInteractions");
+			$("#draftNewInteraction").toggleClass("hidden");
+			// Increase the heigh of the Interactions list back to full.
+			$("#interactions").css('height', '769px')
+			$("#myInteractions").css('height', '715px')
+			$('#draftNewInteractionBtn').attr('data-original-title','Edit Interactions'); //and that's it.
+			$("#draftNewInteractionBtn").children().toggleClass("glyphicon-triangle-left glyphicon-pencil");
+		    $("#myInteractions li .icon").each(function() {
+		    	if ( $(this).hasClass('glyphicon-triangle-down') ){
+			    	$(this).toggleClass('glyphicon-remove glyphicon-triangle-bottom');
+			    } else {
+			    	$(this).toggleClass('glyphicon-remove glyphicon-triangle-top');
+			    }
+		    })
+		    // display infowindow that alerts user there new Interactions is registered.
+		    $("#Interactions").append('<li id="newInteractionAlert" class="alert alert-success alert-dismissible">' +
+		    	'<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'+
+				'You have set a <strong>new interaction!</strong></li>');
+		    // The following function was taken from the following SO answer:
+		    // http://stackoverflow.com/questions/23101966/bootstrap-alert-auto-close
+		    // It will automatically dismiss the alert after a few seconds.
+		    $(".alert").fadeTo(2000, 500).slideUp(500, function(){
+               $(".alert").slideUp(500);
+            });
+		    //clear the user's inputted text, so it doesn't show up next time.
+		    $("#newInteractionInput").val("");
+		} else {
+			$('#newInteractionSubmit').attr('data-original-title','Edit Interactions'); //and that's it.
+
+			// display alert to user about making Interaction, and then auto-dissappear
+		    $("#myInteractions").append('<li id="newInteractionAlert" class="alert alert-warning alert-dismissible">' +
+		    	'<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'+
+				'Write down a new Interaction in the form below</li>');
+
+		    // The following function was taken from the following SO answer:
+		    // http://stackoverflow.com/questions/23101966/bootstrap-alert-auto-close
+		    // It will automatically dismiss the alert after a few seconds.
+		    $(".alert").fadeTo(2000, 500).slideUp(500, function(){
+               $(".alert").slideUp(500);
+            });
+
+		}
 	});
 
 	// generate random colors on cal for days that have past.
