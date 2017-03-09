@@ -171,7 +171,7 @@ function prependGoal(goal, parentElem, progress) {
 	var newElem =
 	'<li class="col-md-12 col-sm-12">' +
 		'<div class="col-md-12 col-sm-12" style="padding:0;">'+
-		'<span class="btn-circle glyphicon glyphicon-remove col-md-2 col-sm-2"></span>'+
+		'<span class="btn-circle glyphicon glyphicon-remove col-md-2 col-sm-2 icon"></span>'+
 		'<p class="col-md-10 col-sm-10 goalText">'+goal+'</p>' +
 		'</div>'+
 		'<div class="col-md-12 col-sm-12" style="padding:0;">'+
@@ -194,9 +194,8 @@ var myGoals =[
 	"Don't use Facebook at Tech",
 	"Don't use any SM before 9 am",
 	"Don't use any SM after 9 pm",
-	"Talk to Francine at least bi-weekly",
 	"Use SM for less than 2 hours a day"
-	// ,"Don't use Twitter at lunch."
+	,"Don't use Twitter at lunch."
 ];
 
 var myInteractions = [
@@ -204,38 +203,13 @@ var myInteractions = [
 	["Patrick Star", "Sent you 9 snaps this month.", "You commented on 4 of their posts.", "You retweeted 9 of their tweets."],
 	["Sandy Cheeks", "@replied them 12 times on Twitter.", "You exchanged 20 direct messages on Twitter.", "They commented on 3 of your Facebook statuses."]
 ];
-// Interactions
-// function showMyInteractions(listOfInteractions, parentElem) {
-
-// 	var interaction, newElem, interactionHTML = "";
-// 	console.log("length of interactions: " + listOfInteractions.length);
-// 	for (var x=0; x<listOfInteractions.length; x++) {
-// 		console.log("x: " + x);
-// 		interaction = listOfInteractions[x];
-// 		newElem =
-// 			'<li class="col-md-12 col-sm-12">' +
-// 			'<span class="btn-circle glyphicon glyphicon-menu-down col-md-2 col-sm-2"></span>'+
-// 			interaction[0]+
-// 			'<ul>';
-// 		// Create list elements for everthing else in 'interaction'
-// 		for (var x=1; x<interaction.length; x++) {
-// 			newElem = newElem + '<li>'+interaction[x]+'</li>';
-// 		}
-// 		newElem = newElem + '</ul></li>';
-// 		// append this to interactionHTML before sending to HTML DOM.
-// 		interactionHTML = interactionHTML + newElem;
-// 	}
-// 	console.log(interactionHTML);
-// 	$(parentElem).prepend(interactionHTML);
-
-// }
 
 function preprendInteraction(interaction, parentElem) {
 
 	var newElem =
 	'<li class="col-md-12 col-sm-12">' +
 		'<div class="col-md-12 col-sm-12" style="padding:0;">'+
-		'<span class="btn-circle glyphicon glyphicon-menu-down col-md-2 col-sm-2"></span>'+
+		'<span class="btn-circle glyphicon glyphicon-triangle-top col-md-2 col-sm-2"></span>'+
 		interaction[0]+
 		'</div>'+
 		'<ul>';
@@ -276,16 +250,41 @@ $(document).ready(function(){
 			myGoals.push(userInputGoal);
 			prependGoal(userInputGoal, "#myGoals", 0);
 			$("#draftNewGoal").toggleClass("hidden");
-			$("#draftNewGoalBtn").children().toggleClass("glyphicon-menu-up glyphicon-pencil");
-		    $("#myGoals li .btn-circle").each(function() {
+			// Increase the heigh of the goals list back to full.
+			$("#goals").css('height', '520px')
+			$("#myGoals").css('height', '470px')
+			$('#draftNewGoalBtn').attr('data-original-title','Edit Goals'); //and that's it.
+			$("#draftNewGoalBtn").children().toggleClass("glyphicon-triangle-left glyphicon-pencil");
+		    $("#myGoals li .icon").each(function() {
 		    	$(this).toggleClass('glyphicon-remove glyphicon-time');
 		    })
 		    // display infowindow that alerts user there new goals is registered.
 		    $("#goals").append('<li id="newGoalAlert" class="alert alert-success alert-dismissible">' +
 		    	'<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'+
 				'You have set a <strong>new goal!</strong></li>');
+		    // The following function was taken from the following SO answer:
+		    // http://stackoverflow.com/questions/23101966/bootstrap-alert-auto-close
+		    // It will automatically dismiss the alert after a few seconds.
+		    $(".alert").fadeTo(2000, 500).slideUp(500, function(){
+               $(".alert").slideUp(500);
+            });
 		    //clear the user's inputted text, so it doesn't show up next time.
 		    $("#newGoalInput").val("");
+		} else {
+			$('#newGoalSubmit').attr('data-original-title','Edit Goals'); //and that's it.
+
+			// display alert to user about making goal, and then auto-dissappear
+		    $("#goals").append('<li id="newGoalAlert" class="alert alert-warning alert-dismissible">' +
+		    	'<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>'+
+				'Write down a new goal in the form below</li>');
+
+		    // The following function was taken from the following SO answer:
+		    // http://stackoverflow.com/questions/23101966/bootstrap-alert-auto-close
+		    // It will automatically dismiss the alert after a few seconds.
+		    $(".alert").fadeTo(2000, 500).slideUp(500, function(){
+               $(".alert").slideUp(500);
+            });
+
 		}
 	});
 
@@ -294,23 +293,35 @@ $(document).ready(function(){
     	$(this).parent().parent().remove();
     });
 
-	$('body').on('click', 'span.glyphicon-menu-down', function(e) {
+	$('body').on('click', 'span.glyphicon-triangle-top', function(e) {
 		$(this).parent().next().toggleClass("hidden");
-		$(this).toggleClass("glyphicon-menu-down glyphicon-menu-right");
+		$(this).toggleClass("glyphicon-triangle-top glyphicon-triangle-bottom");
 	});
 
-	$('body').on('click', 'span.glyphicon-menu-right', function(e) {
+	$('body').on('click', 'span.glyphicon-triangle-bottom', function(e) {
 		$(this).parent().next().toggleClass("hidden");
-		$(this).toggleClass("glyphicon-menu-down glyphicon-menu-right");
+		$(this).toggleClass("glyphicon-triangle-top glyphicon-triangle-bottom");
 	});
 
     	// Click the circular orange button to draft a new goal.
 	$("#draftNewGoalBtn").click(function() {
+		// Decrease the heigh of the goals list to include the new goal box below it.
+		if ($('#goals').height() == 520) {
+			$("#goals").css('height', '355px')
+			$("#myGoals").css('height', '310px')
+			$('#draftNewGoalBtn').attr('data-original-title','Go back'); //and that's it.
+		} else {
+			$("#goals").css('height', '520px')
+			$("#myGoals").css('height', '470px')
+			$('#draftNewGoalBtn').attr('data-original-title','Edit Goals'); //and that's it.
+		}
+		var goalsHeight = $('#goals').height()
+		$("#goals").css('height', 'px')
 		$("#draftNewGoal").toggleClass("hidden");
-	    $("i", this).toggleClass("glyphicon-menu-up glyphicon-pencil");
+	    $("i", this).toggleClass("glyphicon-triangle-left glyphicon-pencil");
 	    // Make a clickable icon next to each existing goal
 	    // this will let user delete goals.
-	    $("#myGoals li .btn-circle").each(function() {
+	    $("#myGoals li .icon").each(function() {
 	    	$(this).toggleClass('glyphicon-remove glyphicon-time');
 	    })
 	});

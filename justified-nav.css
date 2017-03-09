@@ -7,7 +7,7 @@ p {
   font-size: 16px;
 }
 h1, .month{
-  font-family: Georgia;
+  /*font-family: Georgia;*/
   margin: 0;
   background-color: #512DA8;
   background: linear-gradient(-45deg, #512DA8, rgba(64,40,200,0.6));
@@ -16,6 +16,10 @@ h1, .month{
   border-bottom-left-radius: 0;
   border-top-right-radius: 4px;
   border-top-left-radius: 4px;
+}
+
+#leftPane, #middlePane, #rightPane {
+  height: 715px
 }
 
 .hidden {
@@ -51,6 +55,8 @@ body {
   /*background-color: #512DA8 !important;*/
   box-shadow: 0 -4px 0 0 rgba(0,0,0,0.2) inset;
   background: none;
+  font-family: Georgia;
+
 }
 
 
@@ -114,7 +120,9 @@ h1,#myGoalsTitle, #myProgressTitle{ /* #logoText*/
 
   /*box-shadow: 0 4px 0 0 #7B1FA2;*/
 }
-
+.glyphicon-calendar {
+  margin-left: 5px;
+}
 .glyphicon-remove{
   box-shadow: 0 3px 10px 4px rgba(0,0,0,0.2) inset;
   color: #FF0000!important;
@@ -122,9 +130,15 @@ h1,#myGoalsTitle, #myProgressTitle{ /* #logoText*/
   padding-left: 8px;
   padding-top: 8px;
 }
-.glyphicon-ok {
 
+.glyphicon-triangle-bottom {
+  padding-top: 4px!important;
 }
+.glyphicon-triangle-left {
+  padding-right: 6px!important;
+  font-size: 30px!important;
+}
+
 
 .glyphicon-plus{
   color: white;
@@ -146,28 +160,38 @@ h1,#myGoalsTitle, #myProgressTitle{ /* #logoText*/
     background-image: linear-gradient(to bottom right,#ee7600 0, #FF8C00 100%);
 
 }
-
-.glyphicon-time{
+#draftNewGoalBtn {
+    position: absolute;
+    bottom: 0;
+    right: 25px;
+}
+.glyphicon-time,
+.glyphicon-time:hover,
+.glyphicon-time:active,
+.glyphicon-time:focus{
   color: #fff;
-  /*background-image: linear-gradient(to top,#563d7c 0,#6f5499 100%);*/
+  box-shadow: none;
   background: linear-gradient(-45deg, #512DA8, rgba(64,40,200,0.6));
   font-size: 30px;
   padding-top: 8px;
   padding-right: 5px;
+  transform: translateY(0);
 }
+
 /* END OF BUTTON STYLINGS*/
 #goals {
   padding: 0 0;
   box-shadow: 0 5px 4px 0 rgba(0,0,0,0.5);
+  height: 434px;
 }
 
 #draftNewGoal {
   padding: 0;
-  z-index: 1;
+  /*z-index: 1;*/
   box-shadow: 0 3px 10px 4px rgba(0,0,0,0.2);
-  position: absolute;
-  bottom: 0px;
-  right: -410px;
+  /*position: absolute;*/
+  /*bottom: 0px;*/
+  /*right: -410px;*/
 }
 
 /*Styling myGoals list*/
@@ -178,8 +202,16 @@ h1,#myGoalsTitle, #myProgressTitle{ /* #logoText*/
   padding: 0;
   box-shadow: 0 2px 8px 5px rgba(0,0,0,0.2);
   overflow-y: auto;
-  max-height: 465px;
+  /*max-height: 465px;*/
   margin-bottom: 0;
+}
+
+#goals {
+  height: 520px;
+}
+
+#myGoals{
+  height: 470px;
 }
 
 #myInteractions {
@@ -232,7 +264,7 @@ the issue here: https://github.com/twbs/bootstrap/issues/12848 */
 issues with the bootstrap progress bar when is is <= 3%. You can find her contribution to
 the issue here: https://github.com/twbs/bootstrap/issues/12848 */
 
-#newGoalAlert {
+.alert {
   position: absolute;
   top: 30px;
   right: 0;
@@ -317,7 +349,7 @@ the issue here: https://github.com/twbs/bootstrap/issues/12848 */
   margin: 0;
 }
 #myGoals>li>div>span.btn-circle{
-  margin-top: 15px;
+  margin-top: 0;
   margin-bottom: 0;
 }
 .goalText {
@@ -388,12 +420,27 @@ the issue here: https://github.com/twbs/bootstrap/issues/12848 */
 
 #newGoalSubmit{
   font-size: 50px;
-  height: 74px;
+  height: 85px;
+}
+
+#newGoalSubmit:hover,
+#newGoalSubmit:focus {
+  color: #FFFFFF;
+  border: none;
+  outline: 0 !important;
+  transform: translateY(-4px);
+}
+#newGoalSubmit:active{
+  box-shadow: 0 4px #666;
+  transform: translateY(0px);
+  outline: 0;
+
+  /*box-shadow: 0 4px 0 0 #7B1FA2;*/
 }
 
 #newGoalInput{
-  height: 74px;
-  font-size: 16px;
+  height: 85px;
+  font-size: 20px;
   padding: 21px;
   resize: none;
   overflow: hidden;
@@ -426,7 +473,7 @@ ul {list-style-type: none;}
 .weekdays {
     margin: 0;
     padding: 10px 0;
-    background-color: #bbb;
+    background: linear-gradient(-45deg, #666, #aaa);
     float: center;
 
 }
@@ -474,6 +521,10 @@ ul {list-style-type: none;}
 
 .days li:hover {
   transform: translateY(-2px);
+  box-shadow: 0 4px 2px 0 rgba(0,0,0,0.5);
+}
+.days li:active {
+  transform: translateY(2px);
   box-shadow: 0 2px 2px 0 rgba(0,0,0,0.5);
 }
 
